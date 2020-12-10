@@ -69,9 +69,10 @@
         e.preventDefault();
         // recalculate postion of mouse when moved
         const x = e.pageX - slider.offsetLeft;
-        // tells us how far we've moved from startX
-        const walk = x - startX;
-        console.log(walk);
+        // tells us how far we've moved from startX times 3 to speed it up
+        const walk = (x - startX) * 3;
+        // reference scrollLeft variable from line 51
+        slider.scrollLeft = scrollLeft - walk;
     });
 
 
