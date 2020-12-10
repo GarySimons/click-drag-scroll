@@ -39,7 +39,7 @@
     const slider = document.querySelector('.items');
     let isDown = false;
     let startx; // where cursor starts
-    let scrollLeft;
+    let scrollLeft; // tracking where mouse scrolls
  
     // e adds the event
     slider.addEventListener('mousedown', (e) => {
@@ -48,6 +48,7 @@
         slider.classList.add('active');
         // Tracks where the mouse is clicked and takes into account any left offset margins
         startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
     });
 
     slider.addEventListener('mouseleave', () => {
@@ -62,10 +63,15 @@
         slider.classList.remove('active');
     });
 
-    slider.addEventListener('mousemove', () => {
+    slider.addEventListener('mousemove', (e) => {
         if(!isDown) return; // stop the function from running if mouse is not down (clicked)
-        console.count(isDown);
-        console.log('Work');
+        // only allows the function you want and stops all others
+        e.preventDefault();
+        // recalculate postion of mouse when moved
+        const x = e.pageX - slider.offsetLeft;
+        // tells us how far we've moved from startX
+        const walk = x - startX;
+        console.log(walk);
     });
 
 
