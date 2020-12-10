@@ -38,24 +38,33 @@
     // Grab the sliders
     const slider = document.querySelector('.items');
     let isDown = false;
-    let startx;
+    let startx; // where cursor starts
     let scrollLeft;
-
-    slider.addEventListener('mousedown', () => {
+ 
+    // e adds the event
+    slider.addEventListener('mousedown', (e) => {
         isDown = true;
+        // add active class
+        slider.classList.add('active');
+        // Tracks where the mouse is clicked and takes into account any left offset margins
+        startX = e.pageX - slider.offsetLeft;
     });
 
     slider.addEventListener('mouseleave', () => {
         isDown = false;
+        // remove active class
+        slider.classList.remove('active');
     });
 
     slider.addEventListener('mouseup', () => {
         isDown = false;
+        // remove active class
+        slider.classList.remove('active');
     });
 
     slider.addEventListener('mousemove', () => {
         if(!isDown) return; // stop the function from running if mouse is not down (clicked)
-        console.log(isDown);
+        console.count(isDown);
         console.log('Work');
     });
 
